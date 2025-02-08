@@ -1,8 +1,4 @@
-# Project Name
 
-A brief description of your project.
-
-Example:
 A web application that allows users to search for movies, view detailed information, and save their favorites. This app integrates with an API to fetch movie data.
 
 
