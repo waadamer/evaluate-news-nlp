@@ -6,11 +6,11 @@ alert("I EXIST")
 
 // sass files
 
-import './styles/resets.scss';
-import './styles/base.scss';
-import './styles/footer.scss';
-import './styles/form.scss';
-import './styles/header.scss';
+import './views/styles/resets.scss';
+import './views/styles/base.scss';
+import '/views./styles/footer.scss';
+import './views/styles/form.scss';
+import './views/styles/header.scss';
 
 
 document.getElementById('urlForm').addEventListener('submit', handleSubmit); 
