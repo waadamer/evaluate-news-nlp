@@ -1,7 +1,9 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebPackPlugin = require("html-webpack-plugin")
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // Import CssMinimizerPlugin
 
 module.exports = {
     entry: './src/client/index.js',
@@ -17,9 +19,22 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-        }
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }
         ]
+    },
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        libraryTarget: 'var',
+        library: 'Client',
+        clean: true,
+    },
+    optimization: {
+        minimizer: [
+            new CssMinimizerPlugin(),
+        ],
+        minimize: true, 
     },
     plugins: [
         new HtmlWebPackPlugin({
@@ -27,17 +42,15 @@ module.exports = {
             filename: "./index.html",
         }),
         new CleanWebpackPlugin({
-            // Simulate the removal of files
             dry: true,
-            // Write Logs to Console
             verbose: true,
-            // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
-        })
+        }),
+        new WorkboxPlugin.GenerateSW() 
     ],
     devServer: {
         port: 3000,
-        allowedHosts: 'all'
+        allowedHosts: 'all',
     }
-}
+};
