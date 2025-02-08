@@ -8,7 +8,7 @@ alert("I EXIST")
 
 import './views/styles/resets.scss';
 import './views/styles/base.scss';
-import '/views./styles/footer.scss';
+import './views/styles/footer.scss';
 import './views/styles/form.scss';
 import './views/styles/header.scss';
 
